@@ -8,22 +8,28 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
     data(){
         return{
             username:"",
-            password:""
+            password:"",
+            publicPath: process.env.BASE_URL,
+            users:[]
         }
     },
     methods:{
         login(){
-            axios.get("../assets/json/users.json").then(function(response){
+            window.console.log("login")
+        }
+    },
+    created(){
+        axios.get(this.publicPath+"json/users.json").then(function(response){
                 window.console.log(response);
-            }).cacth(function(error){
+                this.users = response.data.users;
+            }).catch(function(error){
                 window.console.log(error);
             })
-        }
     }
 }
 </script>
