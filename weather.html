@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .weather{
+            position: relative;
+            width:180px;
+            height:240px;
+            background: #23b7e5;
+            display: inline-block;
+        }
+        .sunny::before{
+            content: '';
+            background: #F6D963;
+            width:60px;
+            height:60px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            border-radius: 30px;
+            box-shadow: 0 0 20px #ff0;
+            z-index:2;
+            /* display: none; */
+        }
+        .sunny::after{
+            content:'';
+            background: #FFEB3B;
+            width:100px;
+            height:100px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin:-50px 0 0 -50px;
+            z-index:1;
+            clip-path: polygon(
+                50% 0%,
+                64.43% 25%,
+                93.3% 25%,
+                78.87% 50%,
+                93.3% 75%,
+                64.43% 75%,
+                50% 100%,
+                35.57% 75%,
+                6.7% 75%,
+                21.13% 50%,
+                6.7% 25%,
+                35.57% 25%
+            );
+            animation: sunScale 2s linear infinite;
+        }
+        @keyframes sunScale {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .cloudy::before,
+        .rainy::before,
+        .snow::before{
+            content: "";
+            position: absolute;
+            top: 39%;
+            left: 10%;
+            width:36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 
+                22px -15px 0 6px white,
+                32px 3px 0 7px white,
+                54px -11px 0 3px white,
+                65px 7px 0 4px white,
+                85px -2px 0 0 white,
+                28px -23px 0 6px #ccc,
+                60px -19px 0 3px #ccc,
+                91px -10px 0 0 #ccc;
+                z-index:3;
+        }
+        .cloudy::before {
+            animation: cloudytran 1.5s linear infinite;
+        }
+        @keyframes cloudytran{
+            0% {
+                top: 39%;
+            }
+            50% {
+                top: 43%;
+            }
+            100% {
+                top: 39%;
+            }
+        }
+        .rainy::after{
+            content: "";
+            z-index:2;
+            width:4px;
+            height: 15px;
+            border-radius: 2px;
+            position: absolute;
+            left:25%;
+            top:46%;
+            background: white;
+            box-shadow: 
+            white 20px -10px 0 0,
+            white 40px 0 0 0,
+            white 60px -10px 0 0,
+            white 0 30px 0 0,
+            white 20px 20px 0 0,
+            white 40px 30px 0 0,
+            white 60px 20px 0 0,
+            white 0 60px 0 0,
+            white 20px 50px 0 0,
+            white 40px 60px 0 0,
+            white 60px 50px 0 0;
+            animation: rainytran 2s linear infinite;
+            /* transform: rotate(10deg); */
+        }
+        @keyframes rainytran{
+            0% {
+                transform: translate(0, 0) rotate(10deg);
+            }
+            100%{
+                transform: translate(-5.5px, 30px) rotate(10deg);
+                box-shadow: 
+                white 20px -10px 0 0,
+                white 40px 0 0 0,
+                white 60px -10px 0 0,
+                white 0 30px 0 0,
+                white 20px 20px 0 0,
+                white 40px 30px 0 0,
+                white 60px 20px 0 0,
+                rgba(255, 255, 255, 0) 0 60px 0 0,
+                rgba(255, 255, 255, 0) 20px 50px 0 0,
+                rgba(255, 255, 255, 0) 40px 60px 0 0,
+                rgba(255, 255, 255, 0) 60px 50px 0 0;
+            }
+        }
+        .snow::after{
+            content: "";
+            z-index:2;
+            width:10px;
+            height: 10px;
+            border-radius: 10px;
+            position: absolute;
+            left:25%;
+            top:46%;
+            background: white;
+            box-shadow: 
+            white 20px -10px 0 0,
+            white 40px 0 0 0,
+            white 60px -10px 0 0,
+            white 0 30px 0 0,
+            white 20px 20px 0 0,
+            white 40px 30px 0 0,
+            white 60px 20px 0 0,
+            white 0 60px 0 0,
+            white 20px 50px 0 0,
+            white 40px 60px 0 0,
+            white 60px 50px 0 0;
+            animation: snowtran 2s linear infinite;
+            /* transform: rotate(10deg); */
+        }
+        @keyframes snowtran{
+            0% {
+                transform: translate(0, 0);
+            }
+            100%{
+                transform: translate(0, 30px);
+                box-shadow: 
+                white 20px -10px 0 0,
+                white 40px 0 0 0,
+                white 60px -10px 0 0,
+                white 0 30px 0 0,
+                white 20px 20px 0 0,
+                white 40px 30px 0 0,
+                white 60px 20px 0 0,
+                rgba(255, 255, 255, 0) 0 60px 0 0,
+                rgba(255, 255, 255, 0) 20px 50px 0 0,
+                rgba(255, 255, 255, 0) 40px 60px 0 0,
+                rgba(255, 255, 255, 0) 60px 50px 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 晴 -->
+    <div class="weather sunny"></div>
+    <!-- 阴 -->
+    <div class="weather cloudy"></div>
+    <!-- 雨 -->
+    <div class="weather rainy"></div>
+    <!-- 雪 -->
+    <div class="weather snow"></div>
+    <p>作者：Mr_兔子先生</p>
+    <p>链接：<a href="https://juejin.im/post/5d2716ab5188257b775d35ba">https://juejin.im/post/5d2716ab5188257b775d35ba</a></p>
+    <p>来源：掘金</p>
+    <p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</body>
+</html>
